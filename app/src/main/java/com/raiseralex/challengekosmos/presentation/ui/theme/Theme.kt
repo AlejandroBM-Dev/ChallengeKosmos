@@ -1,4 +1,4 @@
-package com.raiseralex.challengekosmos.ui.theme
+package com.raiseralex.challengekosmos.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
