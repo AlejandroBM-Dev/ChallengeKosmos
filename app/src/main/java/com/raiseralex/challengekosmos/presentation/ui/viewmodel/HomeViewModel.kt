@@ -15,6 +15,7 @@ import com.raiseralex.challengekosmos.domain.repositories.RickAndMortyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,12 +32,12 @@ class HomeViewModel@Inject constructor(
         // hilo de Entrda/Salida (dispatcherIO de la clase KosmosApplication).
         viewModelScope.launch(KosmosApplication.dispatcherIO) {
             val character = getCharacters()
-            characterState.value = character
+            _characterState.value = character
         }
     }
 
-    val characterState: MutableState<List<Character>> = mutableStateOf(emptyList())
-
+    private val _characterState = MutableStateFlow<List<Character>>(emptyList())
+    val characterState: StateFlow<List<Character>> = _characterState.asStateFlow()
     private suspend fun getCharacters(): List<Character> {
         return repository.getCharacters().results
     }
