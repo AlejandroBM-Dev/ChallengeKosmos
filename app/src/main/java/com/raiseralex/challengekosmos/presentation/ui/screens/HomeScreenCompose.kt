@@ -58,7 +58,7 @@ fun HomeScreenCompose() {
 
         LazyColumn(contentPadding = PaddingValues(16.dp)) {
             items(characters){ character ->
-                CharacterList(
+                CharacterItem(
                     character = character
                 )
             }
@@ -68,7 +68,7 @@ fun HomeScreenCompose() {
 
 // isExpanded... proporciona la validación para mostrar details
 @Composable
-fun CharacterList(
+fun CharacterItem(
     character: Character
 ) {
     var isExpanded by remember { mutableStateOf(false) }
